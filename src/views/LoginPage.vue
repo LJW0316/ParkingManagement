@@ -37,6 +37,8 @@
 import axios from '@/utils/axios'
 import { reactive, ref, toRefs } from 'vue'
 import md5 from 'js-md5'
+import {localSet} from "@/utils"
+import router from "@/router";
 export default {
   name:'LoginPage',
   setup() {
@@ -59,16 +61,19 @@ export default {
     const submitForm = async () => {
       loginForm.value.validate((valid) => {
         if (valid) {
-          axios.post('/adminUser/login', {
-            userName: state.ruleForm.username || '',
-            passwordMd5: md5(state.ruleForm.password)
+          axios.post('/user/login', {
+            username: state.ruleForm.username || '',
+            password: state.ruleForm.password
           }).then(res => {
-            if(res.data.Data == 'student')
-              window.location.href = '/student';
-            else if(res.data.Data == 'teacher')
-              window.location.href = '/teacher';
-            else if(res.data.Data == 'administrator')
-              window.location.href = '/administrator';
+            localSet('token', res)
+            if(res.role === "student")
+              router.push("/student")
+            else if(res.role === "teacher")
+              router.push("/teacher")
+            else if(res.role === "admin")
+              router.push("/admin")
+          }).catch(error => {
+            console.log(error);
           })
         } else {
           console.log('submit error!!')

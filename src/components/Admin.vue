@@ -1,12 +1,12 @@
 <template>
   <div>
-    Hello World!
+    Admin!
   </div>
 </template>
 
 <script>
 export default {
-  name: "AppIndex"
+  name: "AdminPage"
 }
 </script>
 

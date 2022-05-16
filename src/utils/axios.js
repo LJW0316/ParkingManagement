@@ -19,7 +19,7 @@ axios.interceptors.response.use(res => {
     if (res.data.code != 200) {
         if (res.data.msg) ElMessage.error(res.data.msg)
         if (res.data.code === 419) {
-            router.push({ path: '/login' })
+            router.push({ path: '/' })
         }
         return Promise.reject(res.data)
     }

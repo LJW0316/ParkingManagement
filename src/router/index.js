@@ -7,19 +7,21 @@ const routes = [
         component:()=>import("../views/LoginPage")
     },
     {
-        path:"/student",
-        name:"student",
-        component:()=>import("../components/Student")
-    },
-    {
-        path:"/admin",
-        name:"admin",
-        component:()=>import("../components/Admin")
-    },
-    {
         path:"/teacher",
         name:"teacher",
-        component:()=>import("../components/Teacher")
+        component:()=>import("../views/TeacherHome"),
+        children: [
+            {
+                path:"/grade",
+                name:"gradeInput",
+                component:()=>import("../components/Teacher/GradeInput")
+            },
+            {
+                path:"/welcome",
+                name:"welcome",
+                component:()=>import("../components/Teacher/TeacherMain")
+            }
+        ]
     }
 ]
 const router = createRouter({

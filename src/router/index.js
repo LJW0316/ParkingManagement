@@ -12,14 +12,14 @@ const routes = [
         component:()=>import("../views/TeacherHome"),
         children: [
             {
-                path:"/student",
-                name:"student",
-                component:()=>import("../components/Student")
+                path:"/grade",
+                name:"gradeInput",
+                component:()=>import("../components/Teacher/GradeInput")
             },
             {
-                path:"/admin",
-                name:"admin",
-                component:()=>import("../components/Admin")
+                path:"/welcome",
+                name:"welcome",
+                component:()=>import("../components/Teacher/TeacherMain")
             }
         ]
     }

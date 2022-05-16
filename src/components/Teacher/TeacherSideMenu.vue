@@ -6,11 +6,11 @@
       @select="handleSelect"
       text-color="#222"
       active-text-color="red">
-    <el-menu-item index="admin">
+    <el-menu-item index="welcome">
       <i class="el-icon-menu"></i>
       <span>教师首页</span>
     </el-menu-item>
-    <el-menu-item index="成绩录入">
+    <el-menu-item index="grade">
       <i class="el-icon-menu"></i>
       <span>成绩录入</span>
     </el-menu-item>

@@ -22,7 +22,24 @@ const routes = [
                 component:()=>import("../components/Teacher/TeacherMain")
             }
         ]
-    }
+    },
+    {
+        path:"/student",
+        name:"student",
+        component:()=>import("../views/StudentHome"),
+        children: [
+            {
+                path:"/student/welcome",
+                name:"welcome",
+                component:()=>import("../components/Student/StudentMain")
+            },
+        ]
+    },
+    {
+        path:"/test",
+        name:"test",
+        component:()=>import("../views/TestPage")
+    },
 ]
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),

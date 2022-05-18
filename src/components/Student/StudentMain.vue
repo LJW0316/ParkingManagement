@@ -1,11 +1,12 @@
 <template>
-    <div>
-    </div>
+  <div>
+    student welcome
+  </div>>
 </template>
 
 <script>
 export default {
-  name: "TeacherMain"
+  name: "StudentMain"
 }
 </script>
 

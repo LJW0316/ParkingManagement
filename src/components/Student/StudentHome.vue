@@ -1,12 +1,12 @@
 <template>
   <div style="padding: 10px">
     <div style="margin: 10px 0">
-<!--      功能区域-->
+      <!--      功能区域-->
       <el-button type="primary" @click="add">新增</el-button>
       <el-button type="primary">导入</el-button>
       <el-button type="primary">导出</el-button>
     </div>
-<!--    搜索区域-->
+    <!--    搜索区域-->
     <div style="margin: 10px 0">
       <el-input v-model="search" placeholder="请输入关键字" style="width: 20%"/>
       <el-button type="primary" style="margin-left: 5px">查询</el-button>
@@ -43,7 +43,7 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
       />
-<!--弹窗功能-->
+      <!--弹窗功能-->
       <el-dialog
           v-model="dialogVisible"
           title="新增"
@@ -80,13 +80,13 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 
 export default {
-  name: "StudentHomePage",
-  components: {},
+  name: "StudentMain",
+  components: {
+  },
   data()
   {
     return {

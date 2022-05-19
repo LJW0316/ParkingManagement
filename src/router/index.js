@@ -9,20 +9,32 @@ const routes = [
     {
         path:"/teacher",
         name:"teacher",
-        component:()=>import("../views/TeacherHome"),
+        component:()=>import("../views/TeacherMain"),
         children: [
             {
-                path:"/grade",
-                name:"gradeInput",
-                component:()=>import("../components/Teacher/GradeInput")
+                path:"/teacher/home",
+                name:"teacherHome",
+                component:()=>import("../components/Teacher/TeacherHome")
             },
             {
-                path:"/welcome",
-                name:"welcome",
-                component:()=>import("../components/Teacher/TeacherMain")
+                path:"/teacher/grade",
+                name:"gradeInput",
+                component:()=>import("../components/Teacher/GradeInput")
             }
         ]
-    }
+    },
+    {
+        path:"/student",
+        name:"student",
+        component:()=>import("../views/StudentMain"),
+        children: [
+            {
+                path:"/student/home",
+                name:"studentHome",
+                component:()=>import("../components/Student/StudentHome")
+            },
+        ]
+    },
 ]
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),

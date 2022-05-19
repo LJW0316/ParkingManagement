@@ -1,16 +1,16 @@
 <template>
   <el-menu
       class="function"
-      default-active="welcome"
+      default-active="/teacher/home"
       router
       @select="handleSelect"
       text-color="#222"
       active-text-color="red">
-    <el-menu-item index="welcome">
+    <el-menu-item index="/teacher/home">
       <i class="el-icon-menu"></i>
       <span>教师首页</span>
     </el-menu-item>
-    <el-menu-item index="grade">
+    <el-menu-item index="/teacher/grade">
       <i class="el-icon-menu"></i>
       <span>成绩录入</span>
     </el-menu-item>

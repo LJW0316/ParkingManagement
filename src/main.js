@@ -13,7 +13,7 @@ import '@/assets/css/global.css'
 const app = createApp(App)
 
 app.use(ElementPlus, {
-    locale: zhCn,
+    locale: zhCn,size:'small'
 })
 app.use(router)
 app.use(VueAxios, axios)

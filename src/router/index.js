@@ -35,11 +35,6 @@ const routes = [
             },
         ]
     },
-    {
-        path:"/test",
-        name:"test",
-        component:()=>import("../views/TestPage")
-    },
 ]
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),

@@ -1,7 +1,7 @@
 <template>
   <el-menu
       class="function"
-      default-active="教师首页"
+      default-active="welcome"
       router
       @select="handleSelect"
       text-color="#222"

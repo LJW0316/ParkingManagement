@@ -68,9 +68,8 @@ export default {
             localSet('token', res)
             if(res.role === "student")
               router.push("/student")
-            else if(res.role === "teacher") {
+            else if(res.role === "teacher")
               router.push("/teacher")
-            }
             else if(res.role === "admin")
               router.push("/admin")
           }).catch(error => {

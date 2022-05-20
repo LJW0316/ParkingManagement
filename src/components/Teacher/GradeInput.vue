@@ -30,7 +30,7 @@
     </el-table-column>
     <el-table-column label="Operations">
       <template #default="scope">
-        <el-button size="small" @click="handleEdit(scope.row.cno,scope.row.sno)"
+        <el-button size="small" @click="handleEdit(scope.row.id)"
         >编辑</el-button
         >
         <el-button

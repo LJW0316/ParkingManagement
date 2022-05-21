@@ -7,10 +7,10 @@
   >
     <el-form :model="ruleForm" :rules="rules" ref="formRef" label-width="100px" class="good-form">
       <el-form-item label="课号" prop="name">
-        <el-input type="text" v-model="ruleForm.cno"></el-input>
+        <el-input type="text" disabled v-model="cno"></el-input>
       </el-form-item>
       <el-form-item label="学号" prop="name">
-        <el-input type="text" v-model="ruleForm.sno"></el-input>
+        <el-input type="text" disabled v-model="sno"></el-input>
       </el-form-item>
       <el-form-item label="成绩" prop="rank">
         <el-input type="number" max='200' v-model="ruleForm.grade"></el-input>
@@ -41,37 +41,33 @@ export default {
     const state = reactive({
       visible: false,
       ruleForm: {
-        cno: '',
-        sno: '',
         grade: ''
       },
       rules: {
-        name: [
-          { required: 'true', message: '名称不能为空', trigger: ['change'] }
-        ],
         grade: [
           { required: 'true', message: '成绩不能为空', trigger: ['change'] }
         ]
       },
-
+      id: '',
+      cno: '',
+      sno: ''
     })
     // 获取详情
     const getDetail = (id) => {
-      axios.get(`/categories/${id}`).then(res => {
+      axios.get(`/teacher/getGrade/${id}`).then(res => {
         state.ruleForm = {
-          name: res.categoryName,
-          rank: res.categoryRank
+          grade: res.grade
         }
-        state.parentId = res.parentId
-        state.categoryLevel = res.categoryLevel
+        state.cno = res.cno
+        state.sno = res.sno
       })
     }
     // 开启弹窗
-    const open = (cno,sno) => {
+    const open = (id) => {
       state.visible = true
-      if (cno,sno) {
-        state.ruleForm.cno = cno
-        state.ruleForm.sno = sno
+      if (id) {
+        state.id = id
+        getDetail(id)
       }
     }
     // 关闭弹窗
@@ -84,12 +80,9 @@ export default {
     const submitForm = () => {
       formRef.value.validate((valid) => {
         if (valid) {
-            axios.put('/categories', {
-              categoryId: state.id,
-              categoryLevel: state.categoryLevel,
-              parentId: state.parentId,
-              categoryName: state.ruleForm.name,
-              categoryRank: state.ruleForm.rank
+            axios.put('/teacher/grade', {
+              id: state.id,
+              grade: state.ruleForm.grade
             }).then(() => {
               ElMessage.success('修改成功')
               state.visible = false

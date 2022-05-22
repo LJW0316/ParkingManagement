@@ -1,12 +1,13 @@
 <template>
   <div>
     <!--    头部-->
-    <HeadBar />
-    <!--    主题-->
+    <HeadBar/>
+    <!--    主体-->
     <div style="display: flex">
       <!--      侧边栏-->
-      <SideBar />
-      <StudentMain />
+      <SideBar/>
+      <!--      内容区-->
+      <StudentMain/>
       <router-view style="flex: 1"/>
     </div>
   </div>
@@ -15,7 +16,8 @@
 <script>
 import HeadBar from "@/components/HeadBar";
 import SideBar from "@/components/SideBar";
-import StudentMain from "@/components/Student/StudentHome";
+import StudentMain from "@/components/Admin/AdminHome";
+
 export default {
   name: "StudentHomePage",
   components: {

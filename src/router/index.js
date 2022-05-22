@@ -24,14 +24,14 @@ const routes = [
         ]
     },
     {
-        path:"/student",
-        name:"student",
-        component:()=>import("../views/StudentMain"),
+        path:"/admin",
+        name:"admin",
+        component:()=>import("../views/AdminMain"),
         children: [
             {
-                path:"/student/home",
-                name:"studentHome",
-                component:()=>import("../components/Student/StudentHome")
+                path:"/admin/home",
+                name:"adminHome",
+                component:()=>import("../components/Admin/AdminHome")
             },
         ]
     },

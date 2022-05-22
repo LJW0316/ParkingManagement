@@ -11,13 +11,13 @@ import VueAxios from "vue-axios";
 
 
 const app = createApp(App)
-// , {
-//     locale: zhCn,size:'small'
-// }
+app.use(ElementPlus, {
+    locale: zhCn,
+})
 app.use(ElementPlus)
 app.use(router)
 app.use(VueAxios, axios)
 app.mount('#app')
-// for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-//     app.component(key, component)
-// }
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+}

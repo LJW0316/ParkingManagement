@@ -7,10 +7,10 @@
         @open="handleOpen"
         @close="handleClose"
     >
-      <el-menu-item index="1">
+      <el-menu-item index="student">
         <template #title>
           <el-icon><location /></el-icon>
-          <span>学生信息</span>
+          <span>学生管理</span>
         </template>
       </el-menu-item>
       <el-menu-item index="4">

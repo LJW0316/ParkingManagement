@@ -6,21 +6,20 @@
     </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
-      <el-input v-model="search" placeholder="请输入教师号" style="width: 20%"/>
+      <el-input v-model="search" placeholder="请输入课程号" style="width: 20%"/>
       <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
     </div>
     <!--    表格区域-->
     <el-table :data="tableData" border stripe style="table-layout:auto;width: 100%">
-      <el-table-column prop="tno" label="教师号" sortable/>
-      <el-table-column prop="tname" label="姓名"/>
-      <el-table-column prop="tdept" label="专业"/>
-      <el-table-column prop="tclass" label="职称"/>
-      <el-table-column prop="username" label="用户名"/>
-      <el-table-column prop="password" label="密码"/>
+      <el-table-column prop="cno" label="课程号" sortable/>
+      <el-table-column prop="cname" label="课程名"/>
+      <el-table-column prop="credit" label="学分"/>
+      <el-table-column prop="cdept" label="专业"/>
+      <el-table-column prop="tno" label="授课教师号"/>
       <el-table-column fixed="right" label="操作">
         <template #default="scope">
           <el-button text size="small" @click="handleEdit(scope.row)" type="primary">编辑</el-button>
-          <el-popconfirm title="确认删除吗？" @confirm="handleDelete(scope.row.tno)">
+          <el-popconfirm title="确认删除吗？" @confirm="handleDelete(scope.row.cno)">
             <template #reference>
               <el-button text size="small" type="danger">删除</el-button>
             </template>
@@ -50,17 +49,20 @@
           width="30%"
       >
         <el-form :model="form" label-width="120px">
-          <el-form-item label="教师号">
-            <el-input v-model="form.tno" style="width: 80%" clearable/>
+          <el-form-item label="课程号">
+            <el-input v-model="form.cno" style="width: 80%" clearable/>
           </el-form-item>
-          <el-form-item label="姓名">
-            <el-input v-model="form.tname" style="width: 80%"/>
+          <el-form-item label="课程名">
+            <el-input v-model="form.cname" style="width: 80%"/>
+          </el-form-item>
+          <el-form-item label="学分">
+            <el-input v-model="form.credit" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="专业">
-            <el-input v-model="form.tdept" style="width: 80%"/>
+            <el-input v-model="form.cdept" style="width: 80%"/>
           </el-form-item>
-          <el-form-item label="职称">
-            <el-input v-model="form.tclass" style="width: 80%"/>
+          <el-form-item label="授课教师号">
+            <el-input v-model="form.tno" style="width: 80%"/>
           </el-form-item>
         </el-form>
         <template #footer>
@@ -80,7 +82,7 @@ import {ElMessage} from 'element-plus'
 var add_bool = false//用于判断新增
 
 export default {
-  name: "AdminTeacher",
+  name: "AdminCourse",
   components: {},
   data() {
     return {
@@ -99,7 +101,7 @@ export default {
   methods:
       {
         load() {
-          axios.get('/admin/teacher', {
+          axios.get('/course', {
             params: {
               pageNum: this.currentPage,
               pageSize: this.pageSize,
@@ -120,7 +122,7 @@ export default {
           console.log(add_bool)
           if (add_bool == true)//新增
           {
-            axios.post('/admin/teacher', this.form).then(res => {
+            axios.post('/course', this.form).then(res => {
               console.log(res)
               ElMessage.success("新增成功")
               this.load()//刷新表格数据
@@ -129,7 +131,7 @@ export default {
             })
           } else//更新
           {
-            axios.put('/admin/teacher', this.form).then(res => {
+            axios.put('/course', this.form).then(res => {
               console.log(res)
               ElMessage.success("更新成功")
               this.load()//刷新表格数据
@@ -147,9 +149,9 @@ export default {
         handleCurrentChange() {//改变当前页码
           this.load()
         },
-        handleDelete(tno) {
-          console.log(tno)
-          axios.delete('/admin/teacher/' + tno).then(res => {
+        handleDelete(cno) {
+          console.log(cno)
+          axios.delete('/course/' + cno).then(res => {
             ElMessage.success("删除成功")
             this.load()//刷新表格数据
           })

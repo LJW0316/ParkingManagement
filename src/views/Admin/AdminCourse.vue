@@ -85,7 +85,7 @@ import {ElMessage} from 'element-plus'
 var add_bool = false//用于判断新增
 
 export default {
-  name: "AdminHome",
+  name: "AdminStudent",
   components: {},
   data() {
     return {

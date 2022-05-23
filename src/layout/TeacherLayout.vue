@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TeacherSideMenu from "@/components/Teacher/TeacherSideMenu";
+import TeacherSideMenu from "@/components/TeacherSideMenu";
 export default {
   name: "TeacherHomePage",
   // eslint-disable-next-line vue/no-unused-components

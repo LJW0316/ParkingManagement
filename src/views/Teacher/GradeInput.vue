@@ -50,7 +50,7 @@
 import axios from '@/utils/axios'
 import {onMounted, reactive, ref} from "vue";
 import {localGet} from "@/utils";
-import EditGrade from "@/components/Teacher/EditGrade";
+import EditGrade from "@/views/Teacher/EditGrade";
 export default {
   name: "GradeInput",
   components:{

@@ -7,24 +7,24 @@
       <!--      侧边栏-->
       <SideBar/>
       <!--      内容区-->
-      <StudentMain/>
+      <AdminMain/>
       <router-view style="flex: 1"/>
     </div>
   </div>
 </template>
 
 <script>
-import HeadBar from "@/components/HeadBar";
-import SideBar from "@/components/SideBar";
-import StudentMain from "@/components/Admin/AdminHome";
+import HeadBar from "@/components/AdminHeadBar";
+import SideBar from "@/components/AdminSideBar";
+import AdminStudent from "@/views/Admin/AdminStudent";
 
 export default {
-  name: "StudentHomePage",
+  name: "AdminLayout",
   components: {
     HeadBar,
     SideBar,
     // eslint-disable-next-line vue/no-unused-components
-    StudentMain
+    AdminStudent
   }
 }
 </script>

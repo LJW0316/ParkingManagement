@@ -66,11 +66,11 @@ export default {
             password: state.ruleForm.password
           }).then(res => {
             localSet('token', res)
-            if(res.role === "student")
+            if(res.role === "学生")
               router.push("/student")
-            else if(res.role === "teacher")
+            else if(res.role === "教师")
               router.push("/teacher")
-            else if(res.role === "admin")
+            else if(res.role === "系统管理员")
               router.push("/admin")
           }).catch(error => {
             console.log(error);

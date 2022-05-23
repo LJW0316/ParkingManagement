@@ -1,7 +1,7 @@
 <template>
   <div style="padding: 10px">
+    <!--      功能区域-->
     <div style="margin: 10px 0">
-      <!--      功能区域-->
       <el-button type="primary" @click="add">新增</el-button>
     </div>
     <!--    搜索区域-->
@@ -29,7 +29,9 @@
         </template>
       </el-table-column>
     </el-table>
+
     <div style="margin: 10px 0">
+      <!--    分页-->
       <el-pagination
           v-model:currentPage="currentPage"
           v-model:page-size="pageSize"
@@ -67,12 +69,10 @@
           </el-form-item>
         </el-form>
         <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="save"
-        >确认</el-button
-        >
-      </span>
+          <span class="dialog-footer">
+            <el-button @click="dialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="save">确认</el-button>
+          </span>
         </template>
       </el-dialog>
     </div>
@@ -104,7 +104,7 @@ export default {
   methods:
       {
         load() {
-          axios.get('/admin/student', {
+          axios.get('/student', {
             params: {
               pageNum: this.currentPage,
               pageSize: this.pageSize,
@@ -125,7 +125,7 @@ export default {
           console.log(add_bool)
           if (add_bool == true)//新增 改成sno可以新增 改成id可以更新
           {
-            axios.post('/admin/student', this.form).then(res => {
+            axios.post('/student', this.form).then(res => {
               console.log(res)
               ElMessage.success("新增成功")
               this.load()//刷新表格数据
@@ -134,7 +134,7 @@ export default {
             })
           } else//更新
           {
-            axios.put('/admin/student', this.form).then(res => {
+            axios.put('/student', this.form).then(res => {
               console.log(res)
               ElMessage.success("更新成功")
               this.load()//刷新表格数据
@@ -154,7 +154,7 @@ export default {
         },
         handleDelete(sno) {
           console.log(sno)
-          axios.delete('/admin/student/' + sno).then(res => {
+          axios.delete('/student/' + sno).then(res => {
             ElMessage.success("删除成功")
             this.load()//刷新表格数据
           })

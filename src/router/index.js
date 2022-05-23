@@ -9,29 +9,29 @@ const routes = [
     {
         path:"/teacher",
         name:"teacher",
-        component:()=>import("../views/TeacherHome"),
+        component:()=>import("../views/TeacherMain"),
         children: [
             {
-                path:"/grade",
-                name:"gradeInput",
-                component:()=>import("../components/Teacher/GradeInput")
+                path:"/teacher/home",
+                name:"teacherHome",
+                component:()=>import("../components/Teacher/TeacherHome")
             },
             {
-                path:"/welcome",
-                name:"welcome",
-                component:()=>import("../components/Teacher/TeacherMain")
+                path:"/teacher/grade",
+                name:"gradeInput",
+                component:()=>import("../components/Teacher/GradeInput")
             }
         ]
     },
     {
-        path:"/student",
-        name:"student",
-        component:()=>import("../views/StudentHome"),
+        path:"/admin",
+        name:"admin",
+        component:()=>import("../views/AdminMain"),
         children: [
             {
-                path:"/student/welcome",
-                name:"welcome",
-                component:()=>import("../components/Student/StudentMain")
+                path:"/admin/home",
+                name:"adminHome",
+                component:()=>import("../components/Admin/AdminHome")
             },
         ]
     },

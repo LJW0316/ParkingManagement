@@ -11,6 +11,10 @@ export function localSet (key, value) {
     window.localStorage.setItem(key, JSON.stringify(value))
 }
 
+export function localClear(){
+    window.localStorage.clear()
+}
+
 export function localRemove (key) {
     window.localStorage.removeItem(key)
 }

@@ -33,15 +33,20 @@
         <el-button size="small" @click="handleEdit(scope.row.id)"
         >编辑</el-button
         >
-        <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-        >Delete</el-button
-        >
       </template>
     </el-table-column>
   </el-table>
+  <div>
+    <el-pagination
+        v-model:currentPage="state.currentPage"
+        v-model:page-size="state.pageSize"
+        :page-sizes="[2, 5, 10, 20]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="state.total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+    />
+  </div>
   <EditGrade ref='editGrade' :reload="getClasses"/>
 </template>
 
@@ -69,25 +74,38 @@ export default {
     const tno=localGet('token').id
     // mounted
     onMounted(() => {
-      getClasses()
+      getGrades()
     })
-    const getClasses = () => {
+    const getGrades = () => {
       state.loading=true
-      axios.post('teacher/course',{
-        tno:tno
+      axios.get('teacher/course',{
+        params: {
+          pageNum: state.currentPage,
+          pageSize: state.pageSize,
+          tno: tno
+        }
       }).then(res => {
-        state.tableData = res
+        state.tableData = res.records
+        state.total = res.total
         state.loading = false
       })
     }
     const handleEdit = (cno,sno) => {
       editGrade.value.open(cno,sno)
     }
+    const handleSizeChange = () => {//改变每页个数
+      getGrades()
+    }
+    const handleCurrentChange = () => {//改变当前页码
+      getGrades()
+    }
     return {
       state,
       handleEdit,
       editGrade,
-      getClasses
+      getGrades,
+      handleSizeChange,
+      handleCurrentChange
     }
   }
 }

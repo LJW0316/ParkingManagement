@@ -23,6 +23,7 @@
 
 <script>
 import {localGet,localClear} from "@/utils";
+import router from "@/router";
 
 export default {
   name: "HeadBar",
@@ -30,6 +31,7 @@ export default {
     const name=localGet('token').name
     const logout=()=>{
       localClear()
+      router.push('/')
     }
     return{
       name,

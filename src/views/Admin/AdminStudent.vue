@@ -123,7 +123,7 @@ export default {
         },
         save() {
           console.log(add_bool)
-          if (add_bool == true)//新增 改成sno可以新增 改成id可以更新
+          if (add_bool == true)//新增
           {
             axios.post('/student', this.form).then(res => {
               console.log(res)

@@ -5,6 +5,10 @@
         default-active="/admin/student"
         router
         class="el-menu-vertical-demo"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+
     >
       <el-menu-item index="/admin/student">
         <template #title>

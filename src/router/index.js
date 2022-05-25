@@ -43,6 +43,11 @@ const routes = [
                 name:"AdminCourse",
                 component:()=>import("../views/Admin/AdminCourse")
             },
+            {
+                path:"/admin/studentcourse",
+                name:"AdminStudentCourse",
+                component:()=>import("../views/Admin/AdminStudentCourse")
+            },
         ]
     },
 ]

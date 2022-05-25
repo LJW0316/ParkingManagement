@@ -20,6 +20,10 @@
         <el-icon><Tickets /></el-icon>
         <span>课程管理</span>
       </el-menu-item>
+      <el-menu-item index="/admin/studentcourse">
+        <el-icon><Tickets /></el-icon>
+        <span>学生成绩管理</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>

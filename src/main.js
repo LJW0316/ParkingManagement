@@ -9,7 +9,6 @@ import axios from 'axios'
 import VueAxios from "vue-axios";
 // import '@/assets/css/global.css'
 
-
 const app = createApp(App)
 app.use(ElementPlus, {
     locale: zhCn,

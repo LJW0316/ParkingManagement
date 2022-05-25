@@ -1,12 +1,10 @@
 <template>
-  <div>
-    student welcome
-  </div>>
+  查课表
 </template>
 
 <script>
 export default {
-  name: "StudentMain"
+  name: "LookupCourse"
 }
 </script>
 

@@ -1,33 +1,9 @@
 <template>
-  <el-table :data="state.tableData" style="width: 100%">
-    <el-table-column label="课程号" width="180">
-      <template #default="scope">
-        <div style="display: flex; align-items: center">
-          <span style="margin-left: 10px">{{ scope.row.cno }}</span>
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column label="学号" width="180">
-      <template #default="scope">
-        <div style="display: flex; align-items: center">
-          <span style="margin-left: 10px">{{ scope.row.sno }}</span>
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column label="成绩" width="180">
-      <template #default="scope">
-        <div style="display: flex; align-items: center">
-          <span style="margin-left: 10px">{{ scope.row.grade }}</span>
-        </div>
-      </template>
-    </el-table-column>
-    <el-table-column label="绩点" width="180">
-      <template #default="scope">
-        <div style="display: flex; align-items: center">
-          <span style="margin-left: 10px">{{ scope.row.point }}</span>
-        </div>
-      </template>
-    </el-table-column>
+  <el-table :data="state.tableData" border style="width: 100%">
+    <el-table-column prop="cno" label="课号" width="180" sortable/>
+    <el-table-column prop="sno" label="学号" width="180" sortable/>
+    <el-table-column prop="grade" label="成绩" width="180"/>
+    <el-table-column prop="point" label="绩点" />
     <el-table-column label="Operations">
       <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.row.id)"
@@ -47,7 +23,7 @@
         @current-change="handleCurrentChange"
     />
   </div>
-  <EditGrade ref='editGrade' :reload="getClasses"/>
+  <EditGrade ref='editGrade' :reload="getGrades"/>
 </template>
 
 
@@ -66,7 +42,6 @@ export default {
     const state = reactive({
       loading: false,
       tableData: [], // 数据列表
-      multipleSelection: [], // 选中项
       total: 0, // 总条数
       currentPage: 1, // 当前页
       pageSize: 10 // 分页大小

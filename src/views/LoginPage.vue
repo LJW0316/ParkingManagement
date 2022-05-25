@@ -61,9 +61,10 @@ export default {
     const submitForm = async () => {
       loginForm.value.validate((valid) => {
         if (valid) {
+          console.log(md5(state.ruleForm.password))
           axios.post('/user/login', {
             username: state.ruleForm.username || '',
-            password: state.ruleForm.password
+            password: md5(state.ruleForm.password)
           }).then(res => {
             localSet('token', res)
             if(res.role === "学生")

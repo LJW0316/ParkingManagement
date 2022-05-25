@@ -50,6 +50,28 @@ const routes = [
             },
         ]
     },
+    {
+        path:"/student",
+        name:"student",
+        component:()=>import("../layout/StudentLayout"),
+        children: [
+            {
+                path:"/student/addCourse",
+                name:"addCourse",
+                component:()=>import("../views/Student/AddCourse")
+            },
+            {
+                path:"/student/lookUpCourse",
+                name:"lookUpCourse",
+                component:()=>import("../views/Student/LookupCourse")
+            },
+            {
+                path:"/student/lookUpGrade",
+                name:"lookUpGrade",
+                component:()=>import("../views/Student/LookupGrade")
+            }
+        ]
+    }
 ]
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),

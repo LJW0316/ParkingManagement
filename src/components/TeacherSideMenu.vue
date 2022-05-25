@@ -11,7 +11,7 @@
       <span>教师首页</span>
     </el-menu-item>
     <el-menu-item index="/teacher/grade">
-      <i class="el-icon-menu"></i>
+      <el-icon><EditPen /></el-icon>
       <span>成绩录入</span>
     </el-menu-item>
     <el-menu-item index="课表查询">
@@ -19,7 +19,7 @@
       <span>课表查询</span>
     </el-menu-item>
     <el-menu-item index="成绩分析">
-      <i class="el-icon-menu"></i>
+      <el-icon><Histogram /></el-icon>
       <span>成绩分析</span>
     </el-menu-item>
   </el-menu>

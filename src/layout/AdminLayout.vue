@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import HeadBar from "@/components/AdminHeadBar";
+import HeadBar from "@/components/HeaderBar";
 import SideBar from "@/components/AdminSideBar";
 import AdminStudent from "@/views/Admin/AdminStudent";
 

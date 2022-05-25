@@ -4,9 +4,12 @@
     <div style="flex: 1px"></div>
     <div style="width: 100px">
       <el-dropdown>
-            <el-button type="primary">
-              下拉菜单<el-icon class="el-icon--right"><arrow-down /></el-icon>
-            </el-button>
+        <el-button type="primary">
+          下拉菜单
+          <el-icon class="el-icon--right">
+            <arrow-down/>
+          </el-icon>
+        </el-button>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>个人信息</el-dropdown-item>

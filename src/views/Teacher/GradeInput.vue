@@ -66,14 +66,13 @@ export default {
       currentPage: 1, // 当前页
       pageSize: 10 // 分页大小
     })
-    const tno=localGet('id')
+    const tno=localGet('token').id
     // mounted
     onMounted(() => {
       getClasses()
     })
     const getClasses = () => {
       state.loading=true
-      console.log(localGet('id'))
       axios.post('teacher/course',{
         tno:tno
       }).then(res => {

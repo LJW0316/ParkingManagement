@@ -4,8 +4,8 @@
     <div style="flex: 1px"></div>
     <div style="width: 100px">
       <el-dropdown>
-        <el-button type="primary">
-          下拉菜单
+        <el-button type="primary" text>
+          {{ name }}
           <el-icon class="el-icon--right">
             <arrow-down/>
           </el-icon>
@@ -13,7 +13,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>个人信息</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -22,8 +22,20 @@
 </template>
 
 <script>
+import {localGet,localClear} from "@/utils";
+
 export default {
-  name: "HeadBar"
+  name: "HeadBar",
+  setup(){
+    const name=localGet('token').name
+    const logout=()=>{
+      localClear()
+    }
+    return{
+      name,
+      logout
+    }
+  }
 }
 </script>
 

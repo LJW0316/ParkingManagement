@@ -6,7 +6,7 @@
     </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
-      <el-input v-model="search" placeholder="请输入学号" style="width: 20%"/>
+      <el-input v-model="search" placeholder="请输入学号" style="width: 20%" clearable/>
       <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
     </div>
     <!--    表格区域-->
@@ -52,7 +52,7 @@
       >
         <el-form :model="form" label-width="120px">
           <el-form-item label="学号">
-            <el-input v-model="form.sno" style="width: 80%" clearable/>
+            <el-input v-model="form.sno" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="姓名">
             <el-input v-model="form.sname" style="width: 80%"/>
@@ -123,7 +123,7 @@ export default {
         },
         save() {
           console.log(add_bool)
-          if (add_bool == true)//新增 改成sno可以新增 改成id可以更新
+          if (add_bool == true)//新增
           {
             axios.post('/student', this.form).then(res => {
               console.log(res)

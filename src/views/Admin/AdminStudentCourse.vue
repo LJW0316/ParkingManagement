@@ -14,6 +14,7 @@
       <el-table-column prop="id" label="ID" sortable/>
       <el-table-column prop="sno" label="学号" sortable/>
       <el-table-column prop="cno" label="课程号" sortable/>
+      <el-table-column prop="tno" label="教师号" sortable/>
       <el-table-column prop="grade" label="成绩"/>
       <el-table-column prop="point" label="绩点"/>
       <el-table-column fixed="right" label="操作">
@@ -50,16 +51,19 @@
       >
         <el-form :model="form" label-width="120px">
           <el-form-item label="学号">
-            <el-input v-model="form.sno" style="width: 80%" clearable/>
+            <el-input v-model="form.sno" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="课程号">
             <el-input v-model="form.cno" style="width: 80%"/>
+          </el-form-item>
+          <el-form-item label="教师号">
+            <el-input v-model="form.tno" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="成绩">
             <el-input v-model="form.grade" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="绩点">
-            <el-input v-model="form.point" style="width: 80%"/>
+            <el-input v-model="form.point" style="width: 80%" disabled/>
           </el-form-item>
         </el-form>
         <template #footer>

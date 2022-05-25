@@ -6,7 +6,7 @@
     </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
-      <el-input v-model="search" placeholder="请输入课程号" style="width: 20%"/>
+      <el-input v-model="search" placeholder="请输入课程号" style="width: 20%" clearable/>
       <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
     </div>
     <!--    表格区域-->
@@ -50,7 +50,7 @@
       >
         <el-form :model="form" label-width="120px">
           <el-form-item label="课程号">
-            <el-input v-model="form.cno" style="width: 80%" clearable/>
+            <el-input v-model="form.cno" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="课程名">
             <el-input v-model="form.cname" style="width: 80%"/>

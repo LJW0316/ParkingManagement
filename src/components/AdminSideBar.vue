@@ -12,20 +12,28 @@
     >
       <el-menu-item index="/admin/student">
         <template #title>
-          <el-icon><User /></el-icon>
+          <el-icon>
+            <User/>
+          </el-icon>
           <span>学生管理</span>
         </template>
       </el-menu-item>
       <el-menu-item index="/admin/teacher">
-        <el-icon><EditPen /></el-icon>
+        <el-icon>
+          <EditPen/>
+        </el-icon>
         <span>教师管理</span>
       </el-menu-item>
       <el-menu-item index="/admin/course">
-        <el-icon><Tickets /></el-icon>
+        <el-icon>
+          <Tickets/>
+        </el-icon>
         <span>课程管理</span>
       </el-menu-item>
       <el-menu-item index="/admin/studentcourse">
-        <el-icon><Tickets /></el-icon>
+        <el-icon>
+          <Tickets/>
+        </el-icon>
         <span>学生成绩管理</span>
       </el-menu-item>
     </el-menu>

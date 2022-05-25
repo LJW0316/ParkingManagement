@@ -63,7 +63,7 @@
             <el-input v-model="form.grade" style="width: 80%"/>
           </el-form-item>
           <el-form-item label="绩点">
-            <el-input v-model="form.point" style="width: 80%"/>
+            <el-input v-model="form.point" style="width: 80%" disabled/>
           </el-form-item>
         </el-form>
         <template #footer>

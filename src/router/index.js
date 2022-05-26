@@ -12,9 +12,9 @@ const routes = [
         component:()=>import("../layout/TeacherLayout"),
         children: [
             {
-                path:"/teacher/home",
-                name:"teacherHome",
-                component:()=>import("../views/Teacher/TeacherHome")
+                path:"/teacher/analysis",
+                name:"teacherAnalysis",
+                component:()=>import("../views/Teacher/TeacherAnalysis")
             },
             {
                 path:"/teacher/grade",

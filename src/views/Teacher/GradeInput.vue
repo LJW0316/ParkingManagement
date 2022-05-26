@@ -65,8 +65,8 @@ export default {
         state.loading = false
       })
     }
-    const handleEdit = (cno,sno) => {
-      editGrade.value.open(cno,sno)
+    const handleEdit = (id) => {
+      editGrade.value.open(id)
     }
     const handleSizeChange = () => {//改变每页个数
       getGrades()

@@ -1,15 +1,10 @@
 <template>
   <el-menu
       class="function"
-      default-active="/teacher/home"
       router
       @select="handleSelect"
       text-color="#222"
       active-text-color="red">
-    <el-menu-item index="/teacher/home">
-      <i class="el-icon-menu"></i>
-      <span>教师首页</span>
-    </el-menu-item>
     <el-menu-item index="/teacher/grade">
       <el-icon><EditPen /></el-icon>
       <span>成绩录入</span>
@@ -18,7 +13,7 @@
       <i class="el-icon-menu"></i>
       <span>课表查询</span>
     </el-menu-item>
-    <el-menu-item index="成绩分析">
+    <el-menu-item index="/teacher/analysis">
       <el-icon><Histogram /></el-icon>
       <span>成绩分析</span>
     </el-menu-item>

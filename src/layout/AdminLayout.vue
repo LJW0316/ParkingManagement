@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import HeadBar from "@/components/HeaderBar";
-import SideBar from "@/components/AdminSideBar";
-import AdminStudent from "@/views/Admin/AdminStudent";
+import HeadBar from "@/components/Header";
+import SideBar from "@/components/SideBar";
+import AdminStudent from "@/views/Admin/Admin";
 
 export default {
   name: "AdminLayout",

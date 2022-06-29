@@ -5,7 +5,7 @@
       border-bottom: 1px solid #ccc;
       display: flex"
   >
-    <div style="width: 200px;padding-left: 30px;font-weight: bold;color: whitesmoke">教务管理系统</div>
+    <div style="width: 200px;padding-left: 30px;font-weight: bold;color: whitesmoke">停车场管理系统</div>
     <div style="flex: 1px"></div>
     <div style="width: 100px">
       <div style="width: 100px">
@@ -26,34 +26,14 @@
       </div>
     </div>
   </div>
-  <ChangePassword ref='changePassword'></ChangePassword>
 </template>
 
 <script>
 import {localGet,localClear} from "@/utils";
 import router from "@/router";
-import ChangePassword from "@/views/ChangePassword"
 import {ref} from "vue";
 export default {
   name: "HeadBar",
-  components: {ChangePassword},
-  setup(){
-    const changePassword=ref(null)
-    const name=localGet('token').name
-    const openDialog =()=>{
-      changePassword.value.open()
-    }
-    const logout=()=>{
-      localClear()
-      router.push('/')
-    }
-    return{
-      name,
-      logout,
-      changePassword,
-      openDialog
-    }
-  }
 }
 </script>
 

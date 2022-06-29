@@ -5,36 +5,30 @@
         default-active="/admin/student"
         router
         class="el-menu-vertical-demo"
-        background-color="#545c64"
+        background-color="#2c3e50"
         text-color="#fff"
         active-text-color="#ffd04b"
 
     >
-      <el-menu-item index="/admin/student">
+      <el-menu-item index="/admin/car">
         <template #title>
           <el-icon>
             <User/>
           </el-icon>
-          <span>学生管理</span>
+          <span>车辆管理</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="/admin/teacher">
+      <el-menu-item index="/admin/fee">
         <el-icon>
           <EditPen/>
         </el-icon>
-        <span>教师管理</span>
+        <span>收费管理</span>
       </el-menu-item>
-      <el-menu-item index="/admin/course">
+      <el-menu-item index="/admin/history">
         <el-icon>
-          <Tickets/>
+          <EditPen/>
         </el-icon>
-        <span>课程管理</span>
-      </el-menu-item>
-      <el-menu-item index="/admin/studentcourse">
-        <el-icon>
-          <Tickets/>
-        </el-icon>
-        <span>学生成绩管理</span>
+        <span>车辆出入记录</span>
       </el-menu-item>
     </el-menu>
   </div>

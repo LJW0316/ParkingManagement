@@ -6,20 +6,22 @@
     </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
-      <el-input v-model="search" placeholder="请输入课程号" style="width: 20%" clearable/>
+      <el-input v-model="search" placeholder="请输入车牌号" style="width: 20%" clearable/>
       <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
     </div>
     <!--    表格区域-->
     <el-table :data="tableData" border stripe style="table-layout:auto;width: 100%">
-      <el-table-column prop="cno" label="课程号" sortable/>
-      <el-table-column prop="cname" label="课程名"/>
-      <el-table-column prop="credit" label="学分"/>
-      <el-table-column prop="cdept" label="专业"/>
-      <el-table-column prop="tno" label="授课教师号"/>
+      <el-table-column prop="no" label="车牌号" sortable/>
+      <el-table-column prop="in_time" label="入库时间" sortable/>
+      <el-table-column prop="out_time" label="出库时间" sortable/>
+      <el-table-column prop="time" label="时长" sortable/>
+      <el-table-column prop="type" label="车牌类型"/>
+      <el-table-column prop="fee" label="计费" sortable/>
+      <el-table-column prop="password" label="状态"/>
       <el-table-column fixed="right" label="操作">
         <template #default="scope">
           <el-button text size="small" @click="handleEdit(scope.row)" type="primary">编辑</el-button>
-          <el-popconfirm title="确认删除吗？" @confirm="handleDelete(scope.row.cno)">
+          <el-popconfirm title="确认删除吗？" @confirm="handleDelete(scope.row.sno)">
             <template #reference>
               <el-button text size="small" type="danger">删除</el-button>
             </template>
@@ -49,20 +51,27 @@
           width="30%"
       >
         <el-form :model="form" label-width="120px">
-          <el-form-item label="课程号">
-            <el-input v-model="form.cno" style="width: 80%"/>
+          <el-form-item label="车牌号">
+            <el-input v-model="form.no" style="width: 80%"/>
           </el-form-item>
-          <el-form-item label="课程名">
-            <el-input v-model="form.cname" style="width: 80%"/>
+          <el-form-item label="车牌类型">
+            <el-input v-model="form.type" style="width: 80%"/>
           </el-form-item>
-          <el-form-item label="学分">
-            <el-input v-model="form.credit" style="width: 80%"/>
+          <el-form-item label="入库时间">
+            <el-input v-model="form.in_time" style="width: 80%"/>
           </el-form-item>
-          <el-form-item label="专业">
-            <el-input v-model="form.cdept" style="width: 80%"/>
+          <el-form-item label="出库时间">
+            <el-input v-model="form.out_time" style="width: 80%"/>
           </el-form-item>
-          <el-form-item label="授课教师号">
-            <el-input v-model="form.tno" style="width: 80%"/>
+          <el-form-item label="时长">
+            <el-input v-model="form.time" style="width: 80%"/>
+          </el-form-item>
+          <el-form-item label="计费">
+            <el-input v-model="form.fee" style="width: 80%"/>
+          </el-form-item>
+          <el-form-item label="状态">
+            <el-radio v-model="form.status" label="出库">出库</el-radio>
+            <el-radio v-model="form.status" label="入库">入库</el-radio>
           </el-form-item>
         </el-form>
         <template #footer>
@@ -82,7 +91,7 @@ import {ElMessage} from 'element-plus'
 var add_bool = false//用于判断新增
 
 export default {
-  name: "AdminCourse",
+  name: "AdminStudent",
   components: {},
   data() {
     return {
@@ -101,7 +110,7 @@ export default {
   methods:
       {
         load() {
-          axios.get('/course', {
+          axios.get('/student', {
             params: {
               pageNum: this.currentPage,
               pageSize: this.pageSize,
@@ -122,7 +131,7 @@ export default {
           console.log(add_bool)
           if (add_bool == true)//新增
           {
-            axios.post('/course', this.form).then(res => {
+            axios.post('/student', this.form).then(res => {
               console.log(res)
               ElMessage.success("新增成功")
               this.load()//刷新表格数据
@@ -131,7 +140,7 @@ export default {
             })
           } else//更新
           {
-            axios.put('/course', this.form).then(res => {
+            axios.put('/student', this.form).then(res => {
               console.log(res)
               ElMessage.success("更新成功")
               this.load()//刷新表格数据
@@ -149,9 +158,9 @@ export default {
         handleCurrentChange() {//改变当前页码
           this.load()
         },
-        handleDelete(cno) {
-          console.log(cno)
-          axios.delete('/course/' + cno).then(res => {
+        handleDelete(sno) {
+          console.log(sno)
+          axios.delete('/student/' + sno).then(res => {
             ElMessage.success("删除成功")
             this.load()//刷新表格数据
           })

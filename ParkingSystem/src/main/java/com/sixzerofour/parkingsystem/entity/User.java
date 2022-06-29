@@ -1,4 +1,4 @@
-package com.sixzerofour.parkingsystem.bean;
+package com.sixzerofour.parkingsystem.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;

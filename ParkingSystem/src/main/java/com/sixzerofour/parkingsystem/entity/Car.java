@@ -25,7 +25,6 @@ public class Car {
     private Date inTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-
     @TableField("out_time")
     private Date outTime;
 }

@@ -25,40 +25,35 @@ public class ParkingController {
     @ApiOperation("剩余车位接口")
     @GetMapping("/place_available")
     public Result<?> getAvailable(){
-        return new Result().success().data(num- carService.count());
+        QueryWrapper<Car> carQueryWrapper = new QueryWrapper<>();
+        carQueryWrapper.select().isNull("out_time");
+        return new Result<>().success().data(num- carService.count(carQueryWrapper));
     }
 
     @ApiOperation("修改车位数量接口")
     @PutMapping("/alter_num")
     public Result<?> alterAvailable(Integer newNum){
-        if(newNum<0) {
-            Result result = new Result().error();
-            result.setMessage("车位数量不能为负");
-            return result;
-        }
+        if(newNum<0)
+            return new Result<>().error().setMessage("车位数量不能为负数");
         num = newNum;
-        return new Result().success();
+        return new Result<>().success().setMessage("成功修改车位数量");
     }
 
     @ApiOperation("修改停车费（每小时）接口")
     @PutMapping("/alter_fee")
     public Result<?> alterFee(Integer newFee){
-        if(newFee<0) {
-            return new Result().error();
-        }
+        if(newFee<0)
+            return new Result<>().error().setMessage("停车费不能为负");
         fee = newFee;
-        return new Result().success();
+        return new Result<>().success().setMessage("成功修改停车费为"+fee+"元/每小时");
     }
 
     @ApiOperation("确认支付接口")
     @GetMapping("/pay_confirm")
     public Result<?> payConfirm(@RequestParam String plate){
         //车牌格式合法性检查
-        if(!carService.isLegal(plate)) {
-            Result result = new Result().error();
-            result.setMessage("请正确输入车牌号");
-            return result;
-        }
+        if(!carService.isLegal(plate))
+            return new Result<>().error().setMessage("请正确输入车牌号");
         try {
             Car car = carService.getCar(plate);
             Date timeNow = new Date();
@@ -67,13 +62,13 @@ public class ParkingController {
             Integer minutes = (int) (period / (1000 * 60)-hours * 60);
             Integer payment = hours * fee;
             String interval = hours + "小时" + minutes + "分";
-            HashMap result = new HashMap<>();
+            HashMap<String,Object> result = new HashMap<>();
             result.put("parkingTime",interval);
             result.put("fee",payment);
-            return new Result().success().data(result);
+            return new Result<>().success().data(result);
         }
         catch(Exception e){
-            return new Result().carNotFound();
+            return new Result<>().carNotFound();
         }
     }
 
@@ -81,26 +76,23 @@ public class ParkingController {
     @PostMapping("/in_car")
     public Result<?> vehicleIn(String plate){
         //车牌格式合法性检查
-        if(!carService.isLegal(plate)){
-            Result result = new Result().error();
-            result.setMessage("请正确输入车牌号");
-            return result;
-        }
+        if(!carService.isLegal(plate))
+            return new Result<>().error().setMessage("请正确输入车牌号");
         //检查车辆是否仍在场内
         if(carService.getCar(plate) != null)
-            return new Result().stillInError();
+            return new Result<>().stillInError();
         // 设置车辆入库时间
         Car car = new Car();
         car.setCarNum(plate);
         car.setInTime(new Date());
         car.setOutTime(null);
         carService.save(car);
-        return new Result().success();
+        return new Result<>().success();
     }
 
     @ApiOperation("车辆出库接口")
     @DeleteMapping("/out_car")
-    public Result vehicleOut(String plate){
+    public Result<?> vehicleOut(String plate){
         QueryWrapper<Car> wrapper = new QueryWrapper<>();
         wrapper.eq("car_num",plate);
         Car car = carService.getOne(wrapper);
@@ -108,6 +100,6 @@ public class ParkingController {
         //设置车辆出场时间
         car.setOutTime(timeNow);
         carService.updateById(car);
-        return new Result().success();
+        return new Result<>().success();
     }
 }

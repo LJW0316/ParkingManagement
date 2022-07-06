@@ -1,0 +1,21 @@
+page {
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+.success {
+  font-size: 80rpx;
+  color: rgb(36, 143, 206);
+  text-align: center;
+  padding-top: 30%;
+}
+
+icon {
+  margin-top: 10%;
+  margin-left: 41%;
+}
+
+.wish {
+  margin-top: 60%;
+  text-align: center;
+  font-size: 40rpx;
+}

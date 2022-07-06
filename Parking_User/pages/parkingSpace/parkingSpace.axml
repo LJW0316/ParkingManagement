@@ -1,0 +1,3 @@
+<view>
+  剩余车位：{{parkingNum}}
+</view>

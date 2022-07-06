@@ -1,0 +1,12 @@
+{
+  "subPackageBuildType": "shared",
+  "pages": [
+    "pages/index/index",
+    "pages/pay/pay",
+    "pages/parkingSpace/parkingSpace",
+    "pages/success/success"
+  ],
+  "window": {
+    "defaultTitle": "停车场缴费平台"
+  }
+}

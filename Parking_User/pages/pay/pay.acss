@@ -1,0 +1,49 @@
+view {
+  /* text-align: center; */
+  font-size: 18px;
+}
+
+.box {
+  display: grid;
+}
+
+.plate {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  margin-top: 45%;
+  align-content: center;
+  justify-content: center;
+}
+
+.font {
+  text-align: right;
+  margin: auto;
+  margin-right: 0;
+  margin-left: 50rpx;
+}
+
+input {
+  width: 70%;
+  margin-top: 20px;
+  margin: 50rpx;
+  margin-left: 10rpx;
+  border: white 1.5px solid;
+  border-radius: 10px;
+  height: 60rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.placeholder-input {
+  text-align: center;
+}
+
+button {
+  margin-top: 75rpx;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 15px;
+}
+
+page {
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}

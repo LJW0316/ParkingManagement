@@ -13,6 +13,8 @@ public interface OrderInfoService extends IService<OrderInfo> {
 
     OrderInfo getOrderByOrderNo(String orderNo);
 
+    OrderInfo getNullOrUnpaidOrder(String plate);
+
     String getOrderStatusByOrderNo(String orderNo);
 
     void updateStatusByOrderNo(String orderNo, OrderStatus status);

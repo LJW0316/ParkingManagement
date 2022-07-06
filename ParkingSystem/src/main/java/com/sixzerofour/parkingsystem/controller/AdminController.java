@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sixzerofour.parkingsystem.entity.Car;
 import com.sixzerofour.parkingsystem.entity.OrderInfo;
+import com.sixzerofour.parkingsystem.entity.User;
 import com.sixzerofour.parkingsystem.service.CarService;
 import com.sixzerofour.parkingsystem.service.OrderInfoService;
 import com.sixzerofour.parkingsystem.service.UserService;
@@ -61,5 +62,18 @@ public class AdminController {
         }
         Page<OrderInfo> orderInfoPage = orderInfoService.page(new Page<>(pageNum,pageSize),wrapper);
         return new Result<>().success().data(orderInfoPage);
+    }
+
+    @ApiOperation("用户记录接口")
+    @GetMapping("/get_users")
+    public Result<?> getUsers(@RequestParam(defaultValue = "1") Integer pageNum,//默认起始页码为1
+                             @RequestParam(defaultValue = "10") Integer pageSize,//默认最大页码为10
+                             @RequestParam(defaultValue = "") String search) {//默认空字符串
+        LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery();
+        if (StringUtils.isNotBlank(search)) {
+            wrapper.like(User::getUsername, search);
+        }
+        Page<User> userPage = userService.page(new Page<>(pageNum,pageSize),wrapper);
+        return new Result<>().success().data(userPage);
     }
 }

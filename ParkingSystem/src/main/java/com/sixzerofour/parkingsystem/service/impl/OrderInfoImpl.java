@@ -63,6 +63,15 @@ public class OrderInfoImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> imple
     }
 
     @Override
+    public OrderInfo getNullOrUnpaidOrder(String plate) {
+        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select().eq("plate",plate).
+                and(i -> i.eq("order_status", OrderStatus.UNPAID.getType())
+                        .or().isNull("order_status"));
+        return getOne(queryWrapper);
+    }
+
+    @Override
     public List<OrderInfo> getUnpaidOrderByDuration(int minutes) {
 
         Instant instant = Instant.now().minus(Duration.ofMinutes(minutes));

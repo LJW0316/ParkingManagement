@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 @Api(tags="停车场管理")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/parking")
 public class ParkingController {
     private static Integer num = 100;

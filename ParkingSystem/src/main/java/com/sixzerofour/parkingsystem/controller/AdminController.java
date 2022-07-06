@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 
 @Api(tags = "管理员接口")
 @RestController
+@CrossOrigin
 @RequestMapping("/api/admin")
 public class AdminController {
     @Resource

@@ -69,7 +69,8 @@ public class AlipayController {
             }
             //2.判断 total_amount 是否确实为该订单的实际金额（即商家订单创建时的金额）。
             String totalAmount = params.get("total_amount");
-            Integer totalAmountInt = Integer.parseInt(totalAmount);
+            Double totalAmountDouble = Double.parseDouble(totalAmount);
+            Integer totalAmountInt = totalAmountDouble.intValue();
             int totalFee = order.getTotalFee();
             if(totalAmountInt != totalFee){
                 log.error("金额校验失败");
@@ -94,7 +95,7 @@ public class AlipayController {
             // 在支付宝的业务通知中，只有交易通知状态为 TRADE_SUCCESS 或 TRADE_FINISHED 时，支付宝才会认定为买家付款成功。
             String tradeStatus = params.get("trade_status");
             //TRADE_SUCCESS为支持退款的情况的返回值
-            if(!"TRADE_FINISHED".equals(tradeStatus)){
+            if(!"TRADE_SUCCESS".equals(tradeStatus)){
                 log.error("支付未完成");
                 return "failure";
             }

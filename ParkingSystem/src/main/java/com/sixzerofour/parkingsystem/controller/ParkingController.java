@@ -2,7 +2,10 @@ package com.sixzerofour.parkingsystem.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sixzerofour.parkingsystem.entity.Car;
+import com.sixzerofour.parkingsystem.entity.OrderInfo;
+import com.sixzerofour.parkingsystem.enums.OrderStatus;
 import com.sixzerofour.parkingsystem.service.CarService;
+import com.sixzerofour.parkingsystem.service.OrderInfoService;
 import com.sixzerofour.parkingsystem.vo.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +24,9 @@ public class ParkingController {
 
     @Resource
     CarService carService;
+
+    @Resource
+    OrderInfoService orderInfoService;
 
     @ApiOperation("剩余车位接口")
     @GetMapping("/place_available")
@@ -62,6 +68,20 @@ public class ParkingController {
             Integer minutes = (int) (period / (1000 * 60)-hours * 60);
             Integer payment = hours * fee;
             String interval = hours + "小时" + minutes + "分";
+            OrderInfo orderInfo = orderInfoService.getNullOrUnpaidOrder(plate);
+            if(orderInfo==null)
+                orderInfoService.createOrder(plate,payment);
+            else{
+                Date date = new Date();
+                if(payment==0){
+                    orderInfo.setOrderStatus(OrderStatus.SUCCESS.getType());
+                }else{
+                    orderInfo.setOrderStatus(OrderStatus.UNPAID.getType());
+                    orderInfo.setTotalFee(payment);
+                }
+                orderInfo.setCreateTime(date);
+                orderInfoService.updateById(orderInfo);
+            }
             HashMap<String,Object> result = new HashMap<>();
             result.put("parkingTime",interval);
             result.put("fee",payment);
@@ -87,15 +107,20 @@ public class ParkingController {
         car.setInTime(new Date());
         car.setOutTime(null);
         carService.save(car);
+        OrderInfo orderInfo = orderInfoService.createOrder(plate, 0);
+        orderInfo.setCreateTime(null);
+        orderInfo.setOrderStatus(null);
+        orderInfoService.updateById(orderInfo);
         return new Result<>().success();
     }
 
     @ApiOperation("车辆出库接口")
     @DeleteMapping("/out_car")
     public Result<?> vehicleOut(String plate){
-        QueryWrapper<Car> wrapper = new QueryWrapper<>();
-        wrapper.eq("car_num",plate);
-        Car car = carService.getOne(wrapper);
+        OrderInfo orderInfo = orderInfoService.getNullOrUnpaidOrder(plate);
+        if(orderInfo!=null)
+            return new Result<>().error().setMessage("有待支付订单");
+        Car car = carService.getCar(plate);
         Date timeNow = new Date();
         //设置车辆出场时间
         car.setOutTime(timeNow);

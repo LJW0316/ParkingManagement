@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -27,6 +28,8 @@ public class OrderInfoImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> imple
         orderInfo.setPlate(plate);
         orderInfo.setOrderNo(OrderNoUtils.getOrderNo());
         orderInfo.setTotalFee(fee);
+        Date timeNow = new Date();
+        orderInfo.setCreateTime(timeNow);
         orderInfo.setOrderStatus(OrderStatus.UNPAID.getType());
         baseMapper.insert(orderInfo);
 
@@ -54,7 +57,18 @@ public class OrderInfoImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> imple
         orderInfoQueryWrapper.select().eq("order_no",orderNo);
         OrderInfo orderInfo = getOne(orderInfoQueryWrapper);
         orderInfo.setOrderStatus(status.getType());
+        Date timeNow = new Date();
+        orderInfo.setUpdateTime(timeNow);
         updateById(orderInfo);
+    }
+
+    @Override
+    public OrderInfo getNullOrUnpaidOrder(String plate) {
+        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select().eq("plate",plate).
+                and(i -> i.eq("order_status", OrderStatus.UNPAID.getType())
+                        .or().isNull("order_status"));
+        return getOne(queryWrapper);
     }
 
     @Override

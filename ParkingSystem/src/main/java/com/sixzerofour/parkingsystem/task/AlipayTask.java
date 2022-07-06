@@ -23,7 +23,7 @@ public class AlipayTask {
     public void orderConfirm(){
 
         log.info("orderConfirm被执行");
-        List<OrderInfo> orderInfoList = orderInfoService.getUnpaidOrderByDuration(5);
+        List<OrderInfo> orderInfoList = orderInfoService.getUnpaidOrderByDuration(1);
         for(OrderInfo orderInfo:orderInfoList){
             String orderNo = orderInfo.getOrderNo();
             log.warn("订单超时：{}",orderNo);
@@ -31,4 +31,5 @@ public class AlipayTask {
 
         }
     }
+
 }

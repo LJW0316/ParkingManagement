@@ -126,7 +126,7 @@ public class AlipayServiceImpl implements AlipayService  {
                 if(!OrderStatus.UNPAID.getType().equals(orderStatus)){
                     return;
                 }
-
+                log.info("订单已支付");
                 orderInfoService.updateStatusByOrderNo(orderNo, OrderStatus.SUCCESS);
             }finally {
                 lock.unlock();

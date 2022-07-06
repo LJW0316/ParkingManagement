@@ -1,9 +1,6 @@
 package com.sixzerofour.parkingsystem.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,14 +21,15 @@ public class OrderInfo {
     @TableField("order_no")
     private String orderNo;
 
-    @TableField("total_fee")
+    @TableField(value = "total_fee", updateStrategy = FieldStrategy.IGNORED)
     private Integer totalFee;
 
-    @TableField("order_status")
+
+    @TableField(value = "order_status", updateStrategy = FieldStrategy.IGNORED)
     private String orderStatus;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField("create_time")
+    @TableField(value = "create_time", updateStrategy = FieldStrategy.IGNORED)
     private Date createTime;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

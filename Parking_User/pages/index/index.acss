@@ -1,0 +1,17 @@
+.header {
+  font-size: 50rpx;
+  font-weight: bold;
+  color: rgb(137, 137, 206);
+  text-align: center;
+  padding: 100rpx;
+  margin-bottom: 100rpx;
+}
+
+button {
+  margin: 170rpx;
+  border-radius: 15px;
+}
+
+page {
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}

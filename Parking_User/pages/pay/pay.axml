@@ -1,0 +1,7 @@
+<view class="box">
+  <view class="plate">
+    <view class="font">车牌：</view>
+    <input onInput="bindKeyInput" placeholder="请输入车牌号" placeholder-class="placeholder-input" />
+  </view>
+  <button size="default" type="ghost" onTap="pay">确认</button>
+</view>

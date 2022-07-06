@@ -1,0 +1,7 @@
+<view>
+  <view class="success">支付成功!</view>
+  <icon type="success" size="60" />
+  <view class="wish">
+    祝您一路顺风
+  </view>
+</view>

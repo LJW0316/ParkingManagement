@@ -1,0 +1,19 @@
+<view class="background">
+  <view class="header">
+    停车场缴费平台
+  </view>
+
+  <button 
+    type="ghost" 
+    class="pay" 
+    onTap="pay">
+      缴费离场
+  </button>
+  <button 
+    type="ghost" 
+    class="parknum"
+    onTap="parkNum">
+      查看剩余车位
+  </button>
+  <!-- <navigator url="../success/success">Navigate</navigator> -->
+</view>

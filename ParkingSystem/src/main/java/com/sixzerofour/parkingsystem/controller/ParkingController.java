@@ -29,13 +29,13 @@ public class ParkingController {
     OrderInfoService orderInfoService;
 
     @ApiOperation("获取车位数量接口")
-    @GetMapping
+    @GetMapping("/get_num")
     public Result<?> getNum(){
         return new Result<>().success().data(num);
     }
 
     @ApiOperation("获取停车费接口")
-    @GetMapping
+    @GetMapping("/get_fee")
     public Result<?> getFee(){
         return new Result<>().success().data(fee);
     }
@@ -50,7 +50,7 @@ public class ParkingController {
 
     @ApiOperation("修改车位数量接口")
     @PutMapping("/alter_num")
-    public Result<?> alterAvailable(Integer newNum){
+    public Result<?> alterAvailable(@RequestParam  Integer newNum){
         if(newNum<0)
             return new Result<>().error().setMessage("车位数量不能为负数");
         num = newNum;
@@ -59,7 +59,7 @@ public class ParkingController {
 
     @ApiOperation("修改停车费（每小时）接口")
     @PutMapping("/alter_fee")
-    public Result<?> alterFee(Integer newFee){
+    public Result<?> alterFee(@RequestParam Integer newFee){
         if(newFee<0)
             return new Result<>().error().setMessage("停车费不能为负");
         fee = newFee;
@@ -106,7 +106,7 @@ public class ParkingController {
 
     @ApiOperation("车辆入库接口")
     @PostMapping("/in_car")
-    public Result<?> vehicleIn(String plate){
+    public Result<?> vehicleIn(@RequestParam String plate){
         //车牌格式合法性检查
         if(!carService.isLegal(plate))
             return new Result<>().error().setMessage("请正确输入车牌号");
@@ -128,7 +128,7 @@ public class ParkingController {
 
     @ApiOperation("车辆出库接口")
     @DeleteMapping("/out_car")
-    public Result<?> vehicleOut(String plate){
+    public Result<?> vehicleOut(@RequestParam String plate){
         OrderInfo orderInfo = orderInfoService.getNullOrUnpaidOrder(plate);
         if(orderInfo!=null)
             return new Result<>().error().setMessage("有待支付订单");

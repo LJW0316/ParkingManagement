@@ -13,7 +13,7 @@ axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['token'] = localGet('token') || ''
 // 默认 post 请求，使用 application/json 形式
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-
+axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
 // 请求拦截器，内部根据返回值，重新组装，统一管理。
 axios.interceptors.response.use(res => {
     if (res.data.code != 200) {

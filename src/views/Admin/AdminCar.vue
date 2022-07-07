@@ -1,9 +1,9 @@
 <template>
   <div style="padding: 10px">
     <!--      功能区域-->
-    <!--    <div style="margin: 10px 0">-->
-    <!--      <el-button type="primary" @click="add">新增</el-button>-->
-    <!--    </div>-->
+    <div style="margin: 10px 0">
+      <el-button type="primary" @click="add">修改车位数量</el-button>
+    </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
       <el-input v-model="search" placeholder="请输入车牌号" style="width: 20%" clearable/>
@@ -46,17 +46,8 @@
           width="30%"
       >
         <el-form :model="form" label-width="120px">
-          <el-form-item label="ID">
-            <el-input v-model="form.id" style="width: 80%"/>
-          </el-form-item>
-          <el-form-item label="车牌号">
-            <el-input v-model="form.carNum" style="width: 80%"/>
-          </el-form-item>
-          <el-form-item label="入库时间">
-            <el-input v-model="form.inTime" style="width: 80%"/>
-          </el-form-item>
-          <el-form-item label="出库时间">
-            <el-input v-model="form.outTime" style="width: 80%"/>
+          <el-form-item label="总车位数">
+            <el-input v-model="form.newNum" style="width: 80%"/>
           </el-form-item>
         </el-form>
         <template #footer>
@@ -110,7 +101,9 @@ export default {
           this.form = {}          // 清空表单操作
         },
         save() {
-          axios.put('/student', this.form).then(res => {
+          var params = new URLSearchParams();
+          params.append('newNum',this.form.newNum);
+          axios.put('/parking/alter_num',params).then(res => {
             console.log(res)
             ElMessage.success("更新成功")
             this.load()//刷新表格数据

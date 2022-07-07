@@ -2,7 +2,7 @@
   <div style="padding: 10px">
     <!--      功能区域-->
     <div style="margin: 10px 0">
-      <el-button type="primary" @click="add">修改车位数量</el-button>
+      <el-button type="primary" @click="add">修改单价</el-button>
     </div>
     <!--    搜索区域-->
     <div style="margin: 10px 0">
@@ -40,8 +40,8 @@
           width="30%"
       >
         <el-form :model="form" label-width="120px">
-          <el-form-item label="总车位">
-            <el-input v-model="form.newNum" style="width: 80%"/>
+          <el-form-item label="单价（元/小时）">
+            <el-input v-model="form.newFee" style="width: 80%"/>
           </el-form-item>
         </el-form>
         <template #footer>
@@ -94,10 +94,19 @@ export default {
           this.dialogVisible = true
           this.form = {}          // 清空表单操作
         },
+        // save() {
+        //   console.log(this.form.newNum)
+        //   axios.put('/parking/alter_num', this.form).then(res => {
+        //     console.log(res)
+        //     ElMessage.success("更新成功")
+        //     this.load()//刷新表格数据
+        //     this.dialogVisible = false //关闭弹窗
+        //   })
+        // },
         save() {
-          axios.put('/parking/alter_num', {
-            newNum:this.form.newNum
-          }).then(res => {
+          var params = new URLSearchParams();
+          params.append('newFee',this.form.newFee);
+          axios.put('/parking/alter_fee',params).then(res => {
             console.log(res)
             ElMessage.success("更新成功")
             this.load()//刷新表格数据

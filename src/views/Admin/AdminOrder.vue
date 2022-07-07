@@ -63,7 +63,10 @@ export default {
   components: {},
   data() {
     return {
-      form: {},
+      form: {
+        newNum:'',
+        newFee:''
+      },
       dialogVisible: false,
       search: '',
       pageNum: 1,
@@ -96,7 +99,7 @@ export default {
         },
         save() {
           axios.put('/parking/alter_num', {
-            newNum: 100,
+            newNum: this.form.newNum,
           }).then(res => {
             console.log(res)
             ElMessage.success("更新成功")

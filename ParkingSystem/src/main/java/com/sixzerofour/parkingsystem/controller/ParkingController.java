@@ -29,6 +29,19 @@ public class ParkingController {
     @Resource
     OrderInfoService orderInfoService;
 
+    @ApiOperation("获取车位数量接口")
+    @GetMapping("/get_num")
+    public Result<?> getNum(){
+        return new Result<>().success().data(num);
+    }
+
+    @ApiOperation("获取停车费接口")
+    @GetMapping("/get_fee")
+    public Result<?> getFee(){
+        return new Result<>().success().data(fee);
+    }
+
+
     @ApiOperation("剩余车位接口")
     @GetMapping("/place_available")
     public Result<?> getAvailable(){

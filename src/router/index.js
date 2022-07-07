@@ -9,7 +9,12 @@ const routes = [
             {
                 path:"/admin/car",
                 name:"AdminCar",
-                component:()=>import("../views/Admin/Admin")
+                component:()=>import("../views/Admin/AdminCar")
+            },
+            {
+                path:"/admin/order",
+                name:"AdminOrder",
+                component:()=>import("../views/Admin/AdminOrder")
             },
         ]
     },

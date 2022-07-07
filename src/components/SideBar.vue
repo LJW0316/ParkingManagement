@@ -18,17 +18,11 @@
           <span>车辆管理</span>
         </template>
       </el-menu-item>
-      <el-menu-item index="/admin/fee">
+      <el-menu-item index="/admin/order">
         <el-icon>
           <EditPen/>
         </el-icon>
-        <span>收费管理</span>
-      </el-menu-item>
-      <el-menu-item index="/admin/history">
-        <el-icon>
-          <EditPen/>
-        </el-icon>
-        <span>车辆出入记录</span>
+        <span>订单管理</span>
       </el-menu-item>
     </el-menu>
   </div>

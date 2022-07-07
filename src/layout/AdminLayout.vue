@@ -16,7 +16,7 @@
 <script>
 import HeadBar from "@/components/Header";
 import SideBar from "@/components/SideBar";
-import AdminStudent from "@/views/Admin/Admin";
+import AdminStudent from "@/views/Admin/AdminCar";
 
 export default {
   name: "AdminLayout",

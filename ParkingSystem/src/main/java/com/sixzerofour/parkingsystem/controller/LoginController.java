@@ -4,10 +4,7 @@ import com.sixzerofour.parkingsystem.entity.User;
 import com.sixzerofour.parkingsystem.service.UserService;
 import com.sixzerofour.parkingsystem.vo.Result;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -17,6 +14,7 @@ import java.util.List;
 @Api(tags="登录")
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin
 public class LoginController {
     @Resource
     UserService userService;

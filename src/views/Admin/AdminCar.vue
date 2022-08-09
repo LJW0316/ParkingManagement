@@ -9,6 +9,15 @@
       <el-input v-model="search" placeholder="请输入车牌号" style="width: 20%" clearable/>
       <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
     </div>
+    <!--      上传视频-->
+    <div style="margin: 10px 0">
+      <form action="http://47.100.103.148:15555/test/runplate" method="post" enctype="multipart/form-data">
+        <div><input type="file" multiple="multiple" name="video"></div>
+        <label><input type="radio" name="operation" value="1" checked>入库</label>
+        <label><input type="radio" name="operation" value="0">出库</label>
+        <div><input type="submit" value="上传" @click="message"></div>
+      </form>
+    </div>
     <!--    表格区域-->
     <el-table :data="tableData" border stripe style="table-layout:auto;width: 100%">
       <el-table-column prop="carNum" label="车牌号"/>
@@ -102,8 +111,8 @@ export default {
         },
         save() {
           var params = new URLSearchParams();
-          params.append('newNum',this.form.newNum);
-          axios.put('/parking/alter_num',params).then(res => {
+          params.append('newNum', this.form.newNum);
+          axios.put('/parking/alter_num', params).then(res => {
             console.log(res)
             ElMessage.success("更新成功")
             this.load()//刷新表格数据
@@ -126,7 +135,11 @@ export default {
             ElMessage.success("删除成功")
             this.load()//刷新表格数据
           })
-        }
+        },
+        message() {//弹窗
+          ElMessage.success("上传成功，识别可能需要一定时间")
+          this.load()
+        },
       }
 }
 </script>

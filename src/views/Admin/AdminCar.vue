@@ -123,10 +123,12 @@ export default {
           this.form = JSON.parse(JSON.stringify(row))
           this.dialogVisible = true
         },
-        handleSizeChange() {//改变每页个数
+        handleSizeChange(pageSize) {//改变每页个数
+          this.pageSize = pageSize
           this.load()
         },
-        handleCurrentChange() {//改变当前页码
+        handleCurrentChange(pageNum) {//改变当前页码
+          this.pageNum = pageNum
           this.load()
         },
         handleDelete(id) {

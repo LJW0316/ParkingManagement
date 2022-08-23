@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import {ElMessage} from 'element-plus'
 import router from '@/router/index'
-import { localGet } from './index'
+import {localGet} from './index'
 
 // 这边由于后端没有区分测试和正式，姑且都写成一个接口。
 axios.defaults.baseURL = 'http://47.103.85.74:8090/api'
@@ -16,10 +16,14 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded'
 // 请求拦截器，内部根据返回值，重新组装，统一管理。
 axios.interceptors.response.use(res => {
+    let userJson = sessionStorage.getItem("user")
+    if (!userJson) {
+        router.push({path: '/'})
+    }
     if (res.data.code != 200) {
         if (res.data.msg) ElMessage.error(res.data.msg)
         if (res.data.code === 419) {
-            router.push({ path: '/' })
+            router.push({path: '/'})
         }
         return Promise.reject(res.data)
     }

@@ -20,3 +20,19 @@ app.mount('#app')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+//路由拦截，防止未登录用户进入主界面
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        let userJson = sessionStorage.getItem("user");
+        if (userJson) {
+            next();
+        } else {
+            next({
+                path: '/',
+                query: {redirect: to.fullPath}
+            })
+        }
+    } else {
+        next();
+    }
+})

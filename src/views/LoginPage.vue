@@ -37,6 +37,7 @@ export default {
         console.log(res)
         if (res === this.form.username) {
           ElMessage.success("登录成功")
+          sessionStorage.setItem("user",JSON.stringify(res.data))
           this.$router.push("/admin")//登陆成功之后页面跳转到主页
         }
         else {
